@@ -1,559 +1,307 @@
 import 'package:flutter/material.dart';
-import 'package:gst_calculater/homephase.dart';
 
-void main(){
- runApp(
-   MaterialApp(
-   debugShowCheckedModeBanner: false,
-     home: home(),
- ),);
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Myapp(),
+    ),
+  );
 }
 
+class Myapp extends StatefulWidget {
+  const Myapp({Key? key}) : super(key: key);
 
-import 'package:flutter/material.dart';
-
-class home extends StatefulWidget {
- const home({Key? key}) : super(key: key);
-
- @override
- State<home> createState() => _homeState();
+  @override
+  State<Myapp> createState() => _MyappState();
 }
 
-class _homeState extends State<home> {
-String number="";
- Color mycolor =Colors.white;
- Color gstcolor3 =Colors.grey;
- Color gstcolor5 =Colors.grey;
- Color gstcolor12 =Colors.grey;
- Color gstcolor18 =Colors.grey;
- Color gstcolor28 =Colors.grey;
+class _MyappState extends State<Myapp> {
+  dynamic ANS = 0;
+  double a = 0;
+  double b = 0;
+  String? op;
+  dynamic text;
 
-   double gst3= 0;
-   double gst5=0;
- @override
- Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(title: const Text(""),
-     backgroundColor: Colors.white,
-     ),
-    body: Container(
-      padding: const EdgeInsets.all(15),
-      child: Column(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff2e2d32),
+        elevation: 0,
+      ),
+      body: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                height: 35,
-                width: 360,
-                alignment: const Alignment(-0.9,0),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children:[
-                    Text("   ORIGINAL PRICE"),
-                    Spacer(),
-                    Text("${number}"),
-                  ],
-
-
-                ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              height: 300,
+              width: 400,
+              decoration: BoxDecoration(
+                color: Color(0xff2e2d32),
               ),
-            ],
-          ),
-          const SizedBox(height: 15,),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 30,
-                width:  360,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text("GST",
-                      style: const TextStyle(
-                          fontSize: 18),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "${text}",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 30,
                     ),
-                  ],
+                  ),
+                  Text(
+                    "${ANS}",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 60,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-           ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                          onTap: (){
-                            setState((){
-                              gstcolor3 =Colors.orange;
-                              gstcolor18=Colors.grey;
-                              gstcolor28=Colors.grey;
-                              gstcolor12=Colors.grey;
-                              gstcolor5=Colors.grey;
-
-                             gst3=double.parse(number);
-                             gst5=double.parse(number);
-                             gst3=gst3*(3/100);
-                            });
-                          },
-                          child: Ink(
-                            color: gstcolor3,
-                           child: Container(
-                             height: 30,
-                             width: 70,
-                             alignment: Alignment.center,
-                             child: const Text("3%"),
-                           ),
-                         ),
-                       ),
-                        InkWell(
-                          onTap: (){
-                            setState((){
-                              gstcolor5 =Colors.orange;
-                              gstcolor3=Colors.grey;
-                              gstcolor18=Colors.grey;
-                              gstcolor28=Colors.grey;
-                              gstcolor12=Colors.grey;
-
-                              gst3=double.parse(number);
-                              gst3=gst3*(5/100);
-                            });
-                          },
-                          child: Ink(
-                            color: gstcolor5,
-                            child: Container(
-                              height: 30,
-                              width: 70,
-                              alignment: Alignment.center,
-                              child: const Text("5%"),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){
-                            setState((){
-                              gstcolor12 =Colors.orange;
-                              gstcolor3=Colors.grey;
-                              gstcolor5=Colors.grey;
-                              gstcolor18=Colors.grey;
-                              gstcolor28=Colors.grey;
-                              gst3=gst3*(12/100);
-                            });
-                          },
-                          child: Ink(
-                            color: gstcolor12,
-                            child: Container(
-                              height: 30,
-                              width: 70,
-                              alignment: Alignment.center,
-                              child: const Text("12%"),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){
-                            setState((){
-                              gstcolor18 =Colors.orange;
-                              gstcolor3=Colors.grey;
-                              gstcolor5=Colors.grey;
-                              gstcolor28=Colors.grey;
-                              gstcolor12=Colors.grey;
-                              gst3=gst3*(18/100);
-                            });
-                          },
-                          child: Ink(
-                            color: gstcolor18,
-                            child: Container(
-                              height: 30,
-                              width: 70,
-                              alignment: Alignment.center,
-                              child: const Text("18%"),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){
-                            setState((){
-                              gstcolor28 =Colors.orange;
-                              gstcolor3=Colors.grey;
-                              gstcolor5=Colors.grey;
-                              gstcolor12=Colors.grey;
-                              gstcolor18=Colors.grey;
-                            });
-                          },
-                          child: Ink(
-                            color: gstcolor28,
-                            child: Container(
-                              height: 30,
-                              width: 70,
-                              alignment: Alignment.center,
-                              child: const Text("28%"),
-                            ),
-                          ),
-                        ),
-                      ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            height: 35,
-            width: 360,
-            alignment: const Alignment(-0.9,0),
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: [
-                const Text("   FINAL PRICE"),
-                const Spacer(),
-                 Text(" ${gst3+gst5}.RS   "),
-              ],
             ),
           ),
-          const SizedBox(height: 10,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                height: 80,
-                width: 360,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child:Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text("\nCGST/SGST"),
-                     Text("${gst3/2}"),
-                  ],
-                ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xff2e2d32),
               ),
-            ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: 2,
+                    width: 360,
+                    color: Color(0xff929292),
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            calculat('AC');
+                          });
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 60,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Color(0xffff5a66),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Text(
+                            "AC",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      keypead(numbar: "%", Num: "%", mycolor: Colors.grey),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      keypead(
+                          Num: "/", mycolor: Color(0XFFFF5A66), numbar: "/"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          keypead(Num: "7", mycolor: Colors.white, numbar: "7"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "4", mycolor: Colors.white, numbar: "4"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "1", mycolor: Colors.white, numbar: "1"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(
+                              Num: "00", mycolor: Colors.white, numbar: "00"),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          keypead(Num: "8", mycolor: Colors.white, numbar: "8"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "5", mycolor: Colors.white, numbar: "5"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "2", mycolor: Colors.white, numbar: "2"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "0", mycolor: Colors.white, numbar: "0"),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          keypead(Num: "9", mycolor: Colors.white, numbar: "9"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "6", mycolor: Colors.white, numbar: "6"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: "3", mycolor: Colors.white, numbar: "3"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(Num: ".", mycolor: Colors.white, numbar: "."),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          keypead(
+                              Num: "*",
+                              mycolor: Color(0XFFFF5A66),
+                              numbar: "*"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(
+                              Num: "-",
+                              mycolor: Color(0XFFFF5A66),
+                              numbar: "-"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          keypead(
+                              Num: "+",
+                              mycolor: Color(0XFFFF5A66),
+                              numbar: "+"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                calculat('=');
+                              });
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 80,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                color: Color(0xffff5a66),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                "=",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                ],
+              ),
+            ),
           ),
-           const SizedBox(height: 30,),
-           Row(
-             children: [
-              Column(
-                children: [
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"7";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("7",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"4";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("4",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"1";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("1",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"00";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("00",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-               const SizedBox(width: 10,),
-               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"8";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("8",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"5";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("5",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"2";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("2",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"0";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("0",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-               const SizedBox(width: 10,),
-               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"9";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("9",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"6";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("6",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        number=number+"3";
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text("3",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor=Colors.white;
-                        // number.add();
-                      });
-                    },
-                    child: Ink(
-                      color:mycolor,
-                      child:Container(
-                        height: 100,
-                        width:80,
-                        alignment: Alignment.center,
-                        child: Text(".",style: TextStyle(
-                          fontSize: 25,
-                        ),),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-               const SizedBox(width: 10,),
-               Column(
-                children: [
-                   InkWell(
-                     onTap: (){
-                     setState((){
-                     mycolor =Colors.white;
-                     number="";
-                     gst3=0;
-                     gst5=0;
-                     });
-                     },
-                     child: Ink(
-                       decoration:  BoxDecoration(
-                         color: Colors.orange,
-                         borderRadius: BorderRadius.circular(100),
-                       ),
-                     child: Container(
-                     height: 210,
-                     width: 80,
-                    alignment: Alignment.center,
-                       child: const Text("AC",style: const TextStyle(
-                         fontSize: 30,
-
-                       ),),
-                     ),
-                  ),
-               ),
-                  const SizedBox(height: 20,),
-                  InkWell(
-                    onTap: (){
-                      setState((){
-                        mycolor =Colors.white;
-                        number="";
-                        gst3=0;
-                        gst5=0;
-                      });
-                    },
-                    child: Ink(
-                           decoration: BoxDecoration(
-                     borderRadius:BorderRadius.circular(100),
-                             color:Colors.orange,
-                           ),
-
-                      child: Container(
-                        height: 210,
-                        width: 80,
-                        alignment: Alignment.center,
-                        child: const Icon(Icons.backspace_outlined,size: 30,),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-             ],
-           ),
         ],
       ),
-    ),
-   );
- }
+    );
+  }
+
+  Widget keypead({
+    required String numbar,
+    required String Num,
+    required Color mycolor,
+  }) {
+    return Container(
+      alignment: Alignment.center,
+      height: 60,
+      width: 80,
+      color: Color(0xff2e2d32),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            calculat(Num);
+          });
+        },
+        child: Text(
+          numbar,
+          style: TextStyle(
+            fontSize: 30,
+            color: mycolor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  void calculat(
+    String btntext,
+  ) {
+    print(btntext);
+    if (btntext == 'AC') {
+      print("1");
+      op = "0";
+      a = 0;
+      b = 0;
+      ANS = 0;
+    } else if (btntext == '/' ||
+        btntext == '*' ||
+        btntext == '-' ||
+        btntext == '+' ||
+        btntext == '%') {
+      print("2");
+      a = double.parse(text!);
+      ANS = '';
+      op = btntext;
+    } else if (btntext == '=') {
+      print("3");
+      b = double.parse(text!);
+      if (op == '+') {
+        ANS = (a + b).toString();
+      } else if (op == '-') {
+        ANS = (a - b).toString();
+      } else if (op == '*') {
+        ANS = (a * b).toString();
+      } else if (op == '/') {
+        ANS = (a ~/ b).toString();
+      }
+    } else {
+      print("4");
+      ANS = double.parse(btntext).toString();
+    }
+    setState(() {
+      text = ANS;
+    });
+  }
 }
