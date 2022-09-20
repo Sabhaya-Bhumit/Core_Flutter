@@ -1,307 +1,189 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Myapp(),
-    ),
-  );
+ runApp(
+   MaterialApp(
+     debugShowCheckedModeBanner: false,
+     home: home(),
+   ),
+ );
 }
 
-class Myapp extends StatefulWidget {
-  const Myapp({Key? key}) : super(key: key);
+class home extends StatefulWidget {
+ const home({Key? key}) : super(key: key);
 
-  @override
-  State<Myapp> createState() => _MyappState();
+ @override
+ State<home> createState() => _homeState();
 }
 
-class _MyappState extends State<Myapp> {
-  dynamic ANS = 0;
-  double a = 0;
-  double b = 0;
-  String? op;
-  dynamic text;
+class _homeState extends State<home> {
+ TextEditingController controller=TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff2e2d32),
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              height: 300,
-              width: 400,
-              decoration: BoxDecoration(
-                color: Color(0xff2e2d32),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "${text}",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 30,
-                    ),
-                  ),
-                  Text(
-                    "${ANS}",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff2e2d32),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    height: 2,
-                    width: 360,
-                    color: Color(0xff929292),
-                  ),
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        width: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            calculat('AC');
-                          });
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 60,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            color: Color(0xffff5a66),
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Text(
-                            "AC",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      keypead(numbar: "%", Num: "%", mycolor: Colors.grey),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      keypead(
-                          Num: "/", mycolor: Color(0XFFFF5A66), numbar: "/"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          keypead(Num: "7", mycolor: Colors.white, numbar: "7"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "4", mycolor: Colors.white, numbar: "4"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "1", mycolor: Colors.white, numbar: "1"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(
-                              Num: "00", mycolor: Colors.white, numbar: "00"),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          keypead(Num: "8", mycolor: Colors.white, numbar: "8"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "5", mycolor: Colors.white, numbar: "5"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "2", mycolor: Colors.white, numbar: "2"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "0", mycolor: Colors.white, numbar: "0"),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          keypead(Num: "9", mycolor: Colors.white, numbar: "9"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "6", mycolor: Colors.white, numbar: "6"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: "3", mycolor: Colors.white, numbar: "3"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(Num: ".", mycolor: Colors.white, numbar: "."),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          keypead(
-                              Num: "*",
-                              mycolor: Color(0XFFFF5A66),
-                              numbar: "*"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(
-                              Num: "-",
-                              mycolor: Color(0XFFFF5A66),
-                              numbar: "-"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          keypead(
-                              Num: "+",
-                              mycolor: Color(0XFFFF5A66),
-                              numbar: "+"),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                calculat('=');
-                              });
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                color: Color(0xffff5a66),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Text(
-                                "=",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+ Random random=Random();
 
-  Widget keypead({
-    required String numbar,
-    required String Num,
-    required Color mycolor,
-  }) {
-    return Container(
-      alignment: Alignment.center,
-      height: 60,
-      width: 80,
-      color: Color(0xff2e2d32),
-      child: InkWell(
-        onTap: () {
-          setState(() {
-            calculat(Num);
-          });
-        },
-        child: Text(
-          numbar,
-          style: TextStyle(
-            fontSize: 30,
-            color: mycolor,
-          ),
-        ),
-      ),
-    );
-  }
+ int count=0;
 
-  void calculat(
-    String btntext,
-  ) {
-    print(btntext);
-    if (btntext == 'AC') {
-      print("1");
-      op = "0";
-      a = 0;
-      b = 0;
-      ANS = 0;
-    } else if (btntext == '/' ||
-        btntext == '*' ||
-        btntext == '-' ||
-        btntext == '+' ||
-        btntext == '%') {
-      print("2");
-      a = double.parse(text!);
-      ANS = '';
-      op = btntext;
-    } else if (btntext == '=') {
-      print("3");
-      b = double.parse(text!);
-      if (op == '+') {
-        ANS = (a + b).toString();
-      } else if (op == '-') {
-        ANS = (a - b).toString();
-      } else if (op == '*') {
-        ANS = (a * b).toString();
-      } else if (op == '/') {
-        ANS = (a ~/ b).toString();
-      }
-    } else {
-      print("4");
-      ANS = double.parse(btntext).toString();
-    }
-    setState(() {
-      text = ANS;
-    });
-  }
+ List l1 = ["",];
+ String l2=" ";
+
+
+
+ @override
+ Widget build(BuildContext context) {
+   return Scaffold(
+     backgroundColor: Color(0xff15172b),
+     body: Container(
+       padding: EdgeInsets.all(20),
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.spaceAround,
+         children: [
+           Text(
+             "OTP Generator",
+             style: TextStyle(
+               fontSize: 40,
+               color: Color(0xfff6db87),
+               fontWeight: FontWeight.bold,
+             ),
+           ),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Container(
+                 height: 80,
+                 width: 260,
+                 child: TextField(
+                   controller: controller,
+                   autofocus: true,
+                   maxLength: 1,
+                   onChanged: (val){
+                       count=int.parse(val);
+                   },
+                   style: TextStyle(
+                     color: Color(0xfff6db87),
+                     fontSize: 25,
+                   ),
+                   keyboardType: TextInputType.number,
+                   cursorColor: Color(0xfff6db87),
+                   decoration: InputDecoration(
+                     hintText: "Enter OTP Length",
+                     hintStyle: TextStyle(
+                       color: Colors.grey,
+                     ),
+                     focusedBorder: UnderlineInputBorder(
+                       borderSide: BorderSide(
+                         color: Color(0xfff6db87),
+                       ),
+                     ),
+                   ),
+                 ),
+               ),
+             ],
+           ),
+           SizedBox(height: 10,),
+           InkWell(
+             splashColor: Colors.white.withOpacity(1),
+             borderRadius: BorderRadius.circular(20),
+             onTap: (){
+               l1.clear();
+               setState((){
+                 if(count > 3&& length<9) {
+                   for (int i =0 ; i < length; i++) {
+                     l1.add(random.nextInt(9).toString());
+                   }
+                 }
+                 else
+                 {
+                   length = 0;
+                   l1.clear();
+                   ScaffoldMessenger.of(context).showSnackBar( const SnackBar(content:
+                   Text(" Enter you Length is 4 to 8"),),);
+                 }
+
+                 l2=l1.toString();
+               });
+             },
+             child: Ink(
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(20),
+                 gradient: LinearGradient(
+                   begin: Alignment(-1,1),
+                   end: Alignment(0.1,0),
+                   colors: [
+                     Colors.white,
+                     Color(0xfff6db87),
+                   ],
+                 ),
+               ),
+               child: Container(
+                 height: 60,
+                 width: 250,
+                 alignment: Alignment.center,
+                 child: Text("Generate OTP",style: TextStyle(
+                   fontSize: 25,
+                 ),),
+               ),
+             ),
+           ),
+           SizedBox(height: 10,),
+           Container(
+             height: 70,
+             width: 320,
+             alignment: Alignment.center,
+             decoration: BoxDecoration(
+               borderRadius: BorderRadius.circular(20),
+               gradient: LinearGradient(
+                 begin: Alignment(-1,1),
+                 end: Alignment(0.1,0),
+                 colors: [
+                   Colors.white,
+                   Color(0xfff6db87),
+                 ],
+               ),
+             ),
+             child:Row(
+               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                     children: l1.map((e) => Text("$e",style: TextStyle(fontSize: 25,)),).toList(),
+             ),
+           ),
+           SizedBox(height: 10,),
+           InkWell(
+             splashColor: Colors.white.withOpacity(1),
+             borderRadius: BorderRadius.circular(20),
+             onTap: (){
+               setState((){
+                controller.clear();
+                l2="";
+                l1.clear();
+               });
+             },
+             child: Ink(
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(20),
+                 gradient:const  LinearGradient(
+                   begin: Alignment(-1,1),
+                   end: Alignment(0.1,0),
+                   colors: [
+                     Colors.white,
+                     Color(0xfff6db87),
+                   ],
+                 ),
+               ),
+               child: Container(
+                 height: 60,
+                 width: 250,
+                 alignment: Alignment.center,
+                 child: Text("Reset",style: TextStyle(
+                   fontSize: 25,
+                 ),),
+               ),
+             ),
+           ),
+           SizedBox(height: 10,),
+         ],
+       ),
+     ),
+   );
+ }
 }
