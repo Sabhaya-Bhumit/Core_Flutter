@@ -88,14 +88,14 @@ class _homeState extends State<home> {
              onTap: (){
                l1.clear();
                setState((){
-                 if(count > 3&& length<9) {
-                   for (int i =0 ; i < length; i++) {
+                 if(count > 3&& count<9) {
+                   for (int i =0 ; i < count; i++) {
                      l1.add(random.nextInt(9).toString());
                    }
                  }
                  else
                  {
-                   length = 0;
+                   count = 0;
                    l1.clear();
                    ScaffoldMessenger.of(context).showSnackBar( const SnackBar(content:
                    Text(" Enter you Length is 4 to 8"),),);
